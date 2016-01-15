@@ -25,7 +25,19 @@ Feature: Manage applications
     """
 
   @cleanDB
-  Scenario: Create new application
+  Scenario: Get application details with wrong APP_KEY
+    When I send a GET request to "/api/app/WRONGAPPKEY"
+    Then the response code should be 200
+    And the JSON response should match:
+    """
+    {
+      "status": "Error",
+      "message": "@string@"
+    }
+    """
+
+  @cleanDB
+  Scenario: Create application
     When I send a POST request to "/api/app/" with body:
     """
     {
@@ -44,13 +56,61 @@ Feature: Manage applications
     """
 
   @cleanDB
-  Scenario: Create new application
+  Scenario: Update application
+    When I send a PUT request to "/api/app/NXYPBJZUVORQDFHAKLSMECGIWT" with body:
+    """
+    {
+      "name":"Application_X"
+    }
+    """
+    Then the response code should be 200
+    And the JSON response should match:
+    """
+    {
+      "id": @integer@,
+      "app_key": "@string@",
+      "name": "Application_X",
+      "responses": "@array@"
+    }
+    """
+
+  @cleanDB
+  Scenario: Update name application with wrong APP_KEY
+    When I send a PUT request to "/api/app/WRONGAPPKEY" with body:
+    """
+    {
+      "name":"name"
+    }
+    """
+    Then the response code should be 200
+    And the JSON response should match:
+    """
+    {
+      "status": "Error",
+      "message": "@string@"
+    }
+    """
+
+  @cleanDB
+  Scenario: Delete application
     When I send a DELETE request to "/api/app/INHVFXSMDJWYKBOPQAZUCERLGT"
     Then the response code should be 200
     And the JSON response should match:
     """
     {
-      "status": "@string@",
+      "status": "Removed",
+      "message": "@string@"
+    }
+    """
+
+  @cleanDB
+  Scenario: Delete application witch wrong APP_KEY
+    When I send a DELETE request to "/api/app/WRONGAPPKEY"
+    Then the response code should be 200
+    And the JSON response should match:
+    """
+    {
+      "status": "Error",
       "message": "@string@"
     }
     """

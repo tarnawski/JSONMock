@@ -29,7 +29,7 @@ class ApplicationController extends ApiController
     public function getApplicationAction(Application $application = null)
     {
         if($application == null){
-            return $this->message(['APP_KEY not match']);
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'));
         }
 
         return $this->success($application, 'application', Response::HTTP_OK, array('Default','Details'));
@@ -67,7 +67,7 @@ class ApplicationController extends ApiController
     public function editApplicationAction(Request $request, Application $application = null)
     {
         if($application == null){
-            return $this->message(['APP_KEY not match']);
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'));
         }
 
         $form = $this->get('form.factory')->create(new ApplicationEditType(), $application);
