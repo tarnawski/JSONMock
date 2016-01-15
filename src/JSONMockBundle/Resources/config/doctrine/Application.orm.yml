@@ -11,8 +11,8 @@ JSONMockBundle\Entity\Application:
             generator:
                 strategy: IDENTITY
     fields:
-        secret:
-            column: secret
+        appKey:
+            column: app_key
             type: string
             unique: true
             nullable: false

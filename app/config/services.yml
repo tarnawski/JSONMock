@@ -2,3 +2,13 @@ parameters:
 
 services:
 
+  app.application.repository:
+    class: Doctrine\ORM\EntityRepository
+    factory: [@doctrine.orm.entity_manager, getRepository]
+    arguments:
+      - JSONMockBundle\Entity\Application
+
+  app.user.factory:
+    class: JSONMockBundle\Model\ApplicationFactory
+    arguments:
+      entityManager: "@app.application.repository"

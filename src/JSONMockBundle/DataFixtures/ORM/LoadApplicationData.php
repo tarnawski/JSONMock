@@ -21,7 +21,7 @@ class LoadApplicationData extends AbstractFixture implements FixtureInterface, O
         $faker = Factory::create('pl_PL');
         for ($i = 0; $i < self::APPLICATIONS_NUMBER; $i++) {
             $application = new Application();
-            $application->setSecret(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
+            $application->setAppKey(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
             $application->setName($faker->sentence(2));
             $this->addReference(sprintf('application-%s', $i), $application);
             $manager->persist($application);

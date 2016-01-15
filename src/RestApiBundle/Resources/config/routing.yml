@@ -1,0 +1,4 @@
+api_application:
+  prefix: /app/
+  resource: "@RestApiBundle/Resources/config/api/application.yml"
+

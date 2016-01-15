@@ -1,6 +1,6 @@
 JSONMockBundle\Entity\Response:
     type: entity
-    table: property
+    table: response
     id:
         id:
             type: integer

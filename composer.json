@@ -43,6 +43,8 @@
         "phpmd/phpmd" : "@stable",
         "pdepend/pdepend" : "2.2.1",
         "sebastian/phpcpd": "^2.0",
+        "codifico/parameter-bag-extension": "dev-master",
+        "codifico/web-api-extension": "1.0.x@dev",
         "phploc/phploc": "^2.1"
     },
     "scripts": {
@@ -64,10 +66,7 @@
         ]
     },
     "config": {
-        "bin-dir": "bin",
-        "platform": {
-            "php": "5.3.9"
-        }
+        "bin-dir": "bin"
     },
     "extra": {
         "symfony-app-dir": "app",
