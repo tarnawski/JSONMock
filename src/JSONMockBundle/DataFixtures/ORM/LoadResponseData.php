@@ -9,7 +9,6 @@ use Doctrine\Common\Persistence\ObjectManager;
 use JSONMockBundle\Entity\Response;
 use Faker\Factory;
 
-
 class LoadResponseData extends AbstractFixture implements FixtureInterface, OrderedFixtureInterface
 {
     const RESPONSE_NUMBER = 800;
@@ -22,7 +21,6 @@ class LoadResponseData extends AbstractFixture implements FixtureInterface, Orde
         $faker = Factory::create('pl_PL');
         $arrayOfMethod = ['POST', 'GET', 'DELETE', 'PUT'];
         $arrayOfStatusCode = [200, 201, 403, 500];
-
 
         for ($i = 0; $i < self::RESPONSE_NUMBER; $i++) {
             $response = new Response();
