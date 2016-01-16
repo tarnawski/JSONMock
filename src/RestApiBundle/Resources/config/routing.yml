@@ -1,0 +1,14 @@
+api_application:
+  prefix: /api/application/
+  resource: "@RestApiBundle/Resources/config/api/application.yml"
+
+api_response:
+  prefix: /api/response/
+  resource: "@RestApiBundle/Resources/config/api/response.yml"
+
+response _get:
+  path: /app/{app_key}/{route}.{_format}
+  defaults:  { _controller: RestApiBundle:AppResponse:getResponse, _format: json}
+  methods: [GET, POST, PUT, DELETE]
+  requirements:
+    route: .+

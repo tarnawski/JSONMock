@@ -1,0 +1,19 @@
+api_application_get:
+  path: /{app_key}.{_format}
+  defaults:  { _controller: RestApiBundle:Application:getApplication, _format: json }
+  methods: [GET]
+
+api_application_create:
+  path: /.{_format}
+  defaults:  { _controller: RestApiBundle:Application:createApplication, _format: json }
+  methods: [POST]
+
+api_application_edit:
+  path: /{app_key}.{_format}
+  defaults:  { _controller: RestApiBundle:Application:editApplication, _format: json }
+  methods:  [PUT]
+
+api_application_delete:
+  path: /{app_key}.{_format}
+  defaults:  { _controller: RestApiBundle:Application:deleteApplication, _format: json }
+  methods: [DELETE]

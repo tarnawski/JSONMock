@@ -4,7 +4,7 @@ JSONMockBundle\Entity\Application:
     id:
       expose: true
       groups: [Details]
-    secret:
+    appKey:
       expose: true
       groups: [Details]
     name:

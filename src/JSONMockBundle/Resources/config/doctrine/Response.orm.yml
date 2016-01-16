@@ -1,6 +1,7 @@
 JSONMockBundle\Entity\Response:
     type: entity
-    table: property
+    table: response
+    repositoryClass: JSONMockBundle\Entity\ResponseRepository
     id:
         id:
             type: integer
@@ -13,6 +14,13 @@ JSONMockBundle\Entity\Response:
     fields:
         name:
             column: name
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        url:
+            column: url
             type: string
             nullable: false
             length: 255

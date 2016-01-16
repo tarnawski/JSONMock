@@ -12,7 +12,7 @@ class Application
     /**
      * @var string
      */
-    private $secret;
+    private $appKey;
 
     /**
      * @var string
@@ -41,17 +41,17 @@ class Application
     /**
      * @return string
      */
-    public function getSecret()
+    public function getAppKey()
     {
-        return $this->secret;
+        return $this->appKey;
     }
 
     /**
-     * @param string $secret
+     * @param string $appKey
      */
-    public function setSecret($secret)
+    public function setAppKey($appKey)
     {
-        $this->secret = $secret;
+        $this->appKey = $appKey;
     }
 
     /**
