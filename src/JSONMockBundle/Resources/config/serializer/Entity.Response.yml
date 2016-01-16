@@ -7,6 +7,9 @@ JSONMockBundle\Entity\Response:
     name:
       expose: true
       groups: [Details]
+    url:
+      expose: true
+      groups: [Details]
     value:
       expose: true
       groups: [Details]

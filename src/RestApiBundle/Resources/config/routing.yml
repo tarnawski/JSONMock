@@ -3,6 +3,8 @@ api_application:
   resource: "@RestApiBundle/Resources/config/api/application.yml"
 
 response _get:
-  path: /app/{app_key}/{response_name}.{_format}
-  defaults:  { _controller: RestApiBundle:Response:getResponse, _format: json }
+  path: /app/{app_key}/{param}.{_format}
+  defaults:  { _controller: RestApiBundle:Response:getResponse, _format: json, param1: null, param2: null, param3: null}
   methods: [GET]
+  requirements:
+    param: .+

@@ -22,12 +22,39 @@ class ResponseController extends ApiController
     }
 
     /**
+     * @param $param
      * @param Application $application
-     * @return Response
+     * @return mixed
      * @ParamConverter("application", class="JSONMockBundle\Entity\Application", options={"mapping":{"app_key" = "appKey"}})
      */
-    public function getResponseAction(Application $application = null, $name)
-    {
+    public function getResponseAction(
+        $param,
+        Application $application = null
+    ) {
+
+        var_dump($param);exit;
+
+        if($application == null){
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'));
+        }
+        $url = null;
+        if($param1!=null){ $url=$param1; }
+        if($param2!=null){ $url=$url.'/'.$param2; }
+        if($param3!=null){ $url=$url.'/'.$param3; }
+
+        $responses = $application->getResponses();
+        $response = null;
+
+        foreach($responses as $obj){
+            if($obj->getUrl() == $url){
+                 $response = $obj;
+            }
+        }
+        if($response != null){
+            return $this->success($response, 'response', Response::HTTP_OK, array('Default','Details'));
+        } else {
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'Request not found'));
+        }
 
     }
 }

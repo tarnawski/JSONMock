@@ -18,6 +18,13 @@ JSONMockBundle\Entity\Response:
             length: 255
             options:
                 fixed: false
+        url:
+            column: url
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
         value:
             column: value
             type: string

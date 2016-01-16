@@ -30,6 +30,6 @@ JSONMockBundle\Entity\Application:
         responses:
             targetEntity: Response
             mappedBy: application
-            cascade: [ persist ]
+            cascade: ["all"]
 
     lifecycleCallbacks: {  }
