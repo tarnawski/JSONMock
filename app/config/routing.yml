@@ -5,3 +5,7 @@ rest_api:
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /doc/api
+
+lucky_number:
+    path:     /
+    defaults: { _controller: JSONMockBundle:Welcome:welcome }
