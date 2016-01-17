@@ -13,6 +13,7 @@ JSONMockBundle\Entity\Response:
     value:
       expose: true
       groups: [Details]
+      type: array
     method:
       expose: true
       groups: [Details]
