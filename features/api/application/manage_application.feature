@@ -12,7 +12,7 @@ Feature: Manage applications
 
   @cleanDB
   Scenario: Get application details
-    When I send a GET request to "/api/app/INHVFXSMDJWYKBOPQAZUCERLGT"
+    When I send a GET request to "/api/application/INHVFXSMDJWYKBOPQAZUCERLGT"
     Then the response code should be 200
     And the JSON response should match:
     """
@@ -26,7 +26,7 @@ Feature: Manage applications
 
   @cleanDB
   Scenario: Get application details with wrong APP_KEY
-    When I send a GET request to "/api/app/WRONGAPPKEY"
+    When I send a GET request to "/api/application/WRONGAPPKEY"
     Then the response code should be 200
     And the JSON response should match:
     """
@@ -38,7 +38,7 @@ Feature: Manage applications
 
   @cleanDB
   Scenario: Create application
-    When I send a POST request to "/api/app/" with body:
+    When I send a POST request to "/api/application/" with body:
     """
     {
       "name":"name"
@@ -57,7 +57,7 @@ Feature: Manage applications
 
   @cleanDB
   Scenario: Update application
-    When I send a PUT request to "/api/app/NXYPBJZUVORQDFHAKLSMECGIWT" with body:
+    When I send a PUT request to "/api/application/NXYPBJZUVORQDFHAKLSMECGIWT" with body:
     """
     {
       "name":"Application_X"
@@ -76,7 +76,7 @@ Feature: Manage applications
 
   @cleanDB
   Scenario: Update name application with wrong APP_KEY
-    When I send a PUT request to "/api/app/WRONGAPPKEY" with body:
+    When I send a PUT request to "/api/application/WRONGAPPKEY" with body:
     """
     {
       "name":"name"
@@ -93,7 +93,7 @@ Feature: Manage applications
 
   @cleanDB
   Scenario: Delete application
-    When I send a DELETE request to "/api/app/INHVFXSMDJWYKBOPQAZUCERLGT"
+    When I send a DELETE request to "/api/application/INHVFXSMDJWYKBOPQAZUCERLGT"
     Then the response code should be 200
     And the JSON response should match:
     """
@@ -105,7 +105,7 @@ Feature: Manage applications
 
   @cleanDB
   Scenario: Delete application witch wrong APP_KEY
-    When I send a DELETE request to "/api/app/WRONGAPPKEY"
+    When I send a DELETE request to "/api/application/WRONGAPPKEY"
     Then the response code should be 200
     And the JSON response should match:
     """

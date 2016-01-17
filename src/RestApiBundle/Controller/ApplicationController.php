@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use RestApiBundle\Controller\ApiController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
  * Class ApplicationController
@@ -22,6 +23,17 @@ class ApplicationController extends ApiController
     }
 
     /**
+     * @ApiDoc(
+     *  description="Returns application details",
+     *  requirements={
+     *      {
+     *          "name"="app_key",
+     *          "dataType"="String",
+     *          "requirement"="true",
+     *          "description"="Unique APP_KEY. For example: NACOFXYLPJGQERVBISKTWUHDZM."
+     *      }
+     *  },
+     * )
      * @param Application $application
      * @return Application
      * @ParamConverter("application", class="JSONMockBundle\Entity\Application", options={"mapping":{"app_key" = "appKey"}})
@@ -36,6 +48,11 @@ class ApplicationController extends ApiController
     }
 
     /**
+     * @ApiDoc(
+     *  description="Add application and return it",
+     *  parameters={
+     *      {"name"="name", "dataType"="string", "required"=true, "description"="Name of application"}
+     *  })
      * @param Request $request
      * @return mixed|Response
      */
@@ -59,6 +76,19 @@ class ApplicationController extends ApiController
     }
 
     /**
+     * @ApiDoc(
+     *  description="Edit name of application",
+     *  requirements={
+     *      {
+     *          "name"="app_key",
+     *          "dataType"="String",
+     *          "requirement"="true",
+     *          "description"="Unique APP_KEY. For example: NACOFXYLPJGQERVBISKTWUHDZM."
+     *      }
+     *  },
+     *  parameters={
+     *      {"name"="name", "dataType"="string", "required"=true, "description"="Name of application"}
+     *  })
      * @param Request $request
      * @param Application $application
      * @return mixed|Response
@@ -87,6 +117,16 @@ class ApplicationController extends ApiController
     }
 
     /**
+     * @ApiDoc(
+     *  description="Delete application",
+     *  requirements={
+     *      {
+     *          "name"="app_key",
+     *          "dataType"="String",
+     *          "requirement"="true",
+     *          "description"="Unique APP_KEY. For example: NACOFXYLPJGQERVBISKTWUHDZM."
+     *      }
+     *  })
      * @param Application $application
      * @return mixed
      * @ParamConverter("application", class="JSONMockBundle\Entity\Application", options={"mapping":{"app_key" = "appKey"}})

@@ -1,5 +1,5 @@
 api_application:
-  prefix: /api/app/
+  prefix: /api/application/
   resource: "@RestApiBundle/Resources/config/api/application.yml"
 
 api_response:

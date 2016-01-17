@@ -43,13 +43,7 @@ class ResponseType extends AbstractType
                 new NotBlank()
             ),
         ));
-        $builder->add('statusCode', ChoiceType::class, array(
-            'choices' => array(
-                '200' => 200,
-                '201' => 201,
-                '400' => 400,
-                '500' => 500
-            ),
+        $builder->add('statusCode', 'integer', array(
             'constraints' => array(
                 new NotBlank()
             ),

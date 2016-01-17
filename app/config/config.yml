@@ -73,3 +73,5 @@ fos_rest:
         formats:
             json: true
             xml:  true
+
+nelmio_api_doc: ~

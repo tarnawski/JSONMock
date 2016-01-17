@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use RestApiBundle\Controller\ApiController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
  * Class AppResponseController
@@ -23,6 +24,22 @@ class AppResponseController extends ApiController
     }
 
     /**
+     * @ApiDoc(
+     * description="Get application response",
+     *  requirements={
+     *      {
+     *          "name"="app_key",
+     *          "dataType"="String",
+     *          "requirement"="true",
+     *          "description"="Unique APP_KEY. For example: NACOFXYLPJGQERVBISKTWUHDZM."
+     *      },
+     *      {
+     *          "name"="route",
+     *          "dataType"="String",
+     *          "requirement"="true",
+     *          "description"="Path to application response"
+     *      }
+     *  })
      * @param $route
      * @param Application $application
      * @return mixed

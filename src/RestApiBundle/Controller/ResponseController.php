@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use RestApiBundle\Controller\ApiController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
  * Class ResponseController
@@ -22,6 +23,17 @@ class ResponseController extends ApiController
     }
 
     /**
+     * @ApiDoc(
+     *  description="Returns all responses",
+     *  requirements={
+     *      {
+     *          "name"="app_key",
+     *          "dataType"="String",
+     *          "requirement"="true",
+     *          "description"="Unique APP_KEY. For example: NACOFXYLPJGQERVBISKTWUHDZM."
+     *      }
+     *  },
+     * )
      * @param Application $application
      * @return mixed
      * @ParamConverter("application", class="JSONMockBundle\Entity\Application", options={"mapping":{"app_key" = "appKey"}})
@@ -38,6 +50,23 @@ class ResponseController extends ApiController
     }
 
     /**
+     * @ApiDoc(
+     *  description="Returns response",
+     *  requirements={
+     *      {
+     *          "name"="app_key",
+     *          "dataType"="String",
+     *          "requirement"="true",
+     *          "description"="Unique APP_KEY. For example: NACOFXYLPJGQERVBISKTWUHDZM."
+     *      },
+     *      {
+     *          "name"="id",
+     *          "dataType"="Integer",
+     *          "requirement"="true",
+     *          "description"="Response id"
+     *      }
+     *  },
+     * )
      * @param Application $application
      * @param \JSONMockBundle\Entity\Response $response
      * @return mixed
@@ -62,6 +91,24 @@ class ResponseController extends ApiController
     }
 
     /**
+     * @ApiDoc(
+     *  description="Create new response",
+     *  requirements={
+     *      {
+     *          "name"="app_key",
+     *          "dataType"="String",
+     *          "requirement"="true",
+     *          "description"="Unique APP_KEY. For example: NACOFXYLPJGQERVBISKTWUHDZM."
+     *      }
+     *  },
+     *  parameters={
+     *      {"name"="name", "dataType"="string", "required"=true, "description"="Name of application"},
+     *      {"name"="url", "dataType"="string", "required"=true, "description"="Path to application response"},
+     *      {"name"="value", "dataType"="string", "required"=true, "description"="Value that endpoint should return"},
+     *      {"name"="method", "dataType"="string", "required"=true, "description"="HTTP Methods. Allowed: GET, POST, PUT, DELETE"},
+     *      {"name"="statusCode", "dataType"="string", "required"=true, "description"="HTTP Status Code."}
+     *  })
+     * )
      * @param Request $request
      * @param Application $application
      * @return mixed
@@ -98,6 +145,24 @@ class ResponseController extends ApiController
     }
 
     /**
+     * @ApiDoc(
+     *  description="Edit response",
+     *  requirements={
+     *      {
+     *          "name"="app_key",
+     *          "dataType"="String",
+     *          "requirement"="true",
+     *          "description"="Unique APP_KEY. For example: NACOFXYLPJGQERVBISKTWUHDZM."
+     *      }
+     *  },
+     *  parameters={
+     *      {"name"="name", "dataType"="string", "required"=true, "description"="Name of application"},
+     *      {"name"="url", "dataType"="string", "required"=true, "description"="Path to application response"},
+     *      {"name"="value", "dataType"="string", "required"=true, "description"="Value that endpoint should return"},
+     *      {"name"="method", "dataType"="string", "required"=true, "description"="HTTP Methods. Allowed: GET, POST, PUT, DELETE"},
+     *      {"name"="statusCode", "dataType"="string", "required"=true, "description"="HTTP Status Code."}
+     *  })
+     * )
      * @param Request $request
      * @param \JSONMockBundle\Entity\Response $response
      * @param Application $application
@@ -133,6 +198,16 @@ class ResponseController extends ApiController
     }
 
     /**
+     * @ApiDoc(
+     *  description="Delete response",
+     *  requirements={
+     *      {
+     *          "name"="app_key",
+     *          "dataType"="String",
+     *          "requirement"="true",
+     *          "description"="Unique APP_KEY. For example: NACOFXYLPJGQERVBISKTWUHDZM."
+     *      }
+     * })
      * @param \JSONMockBundle\Entity\Response $response
      * @param Application $application
      * @return mixed
