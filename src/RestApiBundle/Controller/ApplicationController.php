@@ -28,7 +28,7 @@ class ApplicationController extends ApiController
      */
     public function getApplicationAction(Application $application = null)
     {
-        if($application == null){
+        if ($application == null) {
             return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'));
         }
 
@@ -49,7 +49,7 @@ class ApplicationController extends ApiController
             return $this->error($this->getErrorMessages($form));
         }
         $data = $form->getData();
-        $application = $this->get('app.user.factory')->create($data['name']);
+        $application = $this->get('app.application.factory')->create($data['name']);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($application);
@@ -66,7 +66,7 @@ class ApplicationController extends ApiController
      */
     public function editApplicationAction(Request $request, Application $application = null)
     {
-        if($application == null){
+        if ($application == null) {
             return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'));
         }
 
@@ -93,7 +93,7 @@ class ApplicationController extends ApiController
      */
     public function deleteApplicationAction(Application $application = null)
     {
-        if($application == null){
+        if ($application == null) {
             return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'));
         }
 

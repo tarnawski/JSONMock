@@ -12,7 +12,8 @@ class ApplicationFactory
      */
     private $userRepository;
 
-    public function __construct(EntityRepository $entityRepository){
+    public function __construct(EntityRepository $entityRepository)
+    {
         $this->userRepository = $entityRepository;
     }
 
@@ -27,10 +28,10 @@ class ApplicationFactory
 
     private function uniqueAppKey()
     {
-        do{
+        do {
             $appKey = str_shuffle("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
             $application = $this->userRepository->findBy(array('appKey' => $appKey));
-        }while($application);
+        } while ($application);
 
         return $appKey;
     }

@@ -1,0 +1,24 @@
+api_response_get_all:
+  path: /{app_key}.{_format}
+  defaults:  { _controller: RestApiBundle:Response:allResponse, _format: json }
+  methods: [GET]
+
+api_response_get:
+  path: /{app_key}/{id}.{_format}
+  defaults:  { _controller: RestApiBundle:Response:getResponse, _format: json }
+  methods: [GET]
+
+api_response_create:
+  path: /{app_key}.{_format}
+  defaults:  { _controller: RestApiBundle:Response:createResponse, _format: json }
+  methods: [POST]
+
+api_response_edit:
+  path: /{app_key}/{id}.{_format}
+  defaults:  { _controller: RestApiBundle:Response:editResponse, _format: json }
+  methods:  [PUT]
+
+api_response_delete:
+  path: /{app_key}/{id}.{_format}
+  defaults:  { _controller: RestApiBundle:Response:deleteResponse, _format: json }
+  methods: [DELETE]

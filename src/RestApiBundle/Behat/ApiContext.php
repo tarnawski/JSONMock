@@ -58,8 +58,31 @@ class ApiContext extends WebApiContext implements Context, SnippetAcceptingConte
             $application->setName($row['Name']);
             $application->setAppKey($row['APP_KEY']);
             $this->getManager()->persist($application);
-            $this->getManager()->flush();
         }
+        $this->getManager()->flush();
+        $this->getManager()->clear();
+    }
+
+
+    /**
+     * @Given There are the following responses:
+     */
+    public function thereAreTheFollowingResponses(TableNode $table)
+    {
+        $em = $this->getManager();
+        $applicationRepository = $em->getRepository('JSONMockBundle:Application');
+        foreach ($table->getColumnsHash() as $row) {
+            $response = new \JSONMockBundle\Entity\Response();
+            $response->setName($row['Name']);
+            $response->setUrl($row['Url']);
+            $response->setValue($row['Value']);
+            $response->setMethod($row['Method']);
+            $response->setStatusCode($row['Status_code']);
+            $application = $applicationRepository->find($row['APP_ID']);
+            $response->setApplication($application);
+            $this->getManager()->persist($response);
+        }
+        $this->getManager()->flush();
         $this->getManager()->clear();
     }
 

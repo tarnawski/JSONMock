@@ -1,6 +1,7 @@
 JSONMockBundle\Entity\Response:
     type: entity
     table: response
+    repositoryClass: JSONMockBundle\Entity\ResponseRepository
     id:
         id:
             type: integer
