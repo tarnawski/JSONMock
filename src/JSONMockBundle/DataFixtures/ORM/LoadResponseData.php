@@ -26,7 +26,7 @@ class LoadResponseData extends AbstractFixture implements FixtureInterface, Orde
             $response = new Response();
             $response->setName($faker->word);
             $response->setUrl($faker->word.'/'.$faker->word);
-            $response->setValue("{'" .$faker->word. "': '" .$faker->word. "'}");
+            $response->setValue(array($faker->word => $faker->word));
             $key = array_rand($arrayOfMethod);
             $response->setMethod($arrayOfMethod[$key]);
             $key = array_rand($arrayOfStatusCode);
