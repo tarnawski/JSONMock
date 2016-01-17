@@ -1,0 +1,24 @@
+JSONMockBundle\Entity\Response:
+  exclusion_policy: ALL
+  properties:
+    id:
+      expose: true
+      groups: [Details]
+    name:
+      expose: true
+      groups: [Details]
+    url:
+      expose: true
+      groups: [Details]
+    value:
+      expose: true
+      groups: [Details]
+    method:
+      expose: true
+      groups: [Details]
+    statusCode:
+      expose: true
+      groups: [Details]
+    application:
+      expose: false
+

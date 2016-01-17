@@ -1,3 +1,11 @@
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+rest_api:
+    resource: "@RestApiBundle/Resources/config/routing.yml"
+    prefix:   /
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /doc/api
+
+lucky_number:
+    path:     /
+    defaults: { _controller: JSONMockBundle:Welcome:welcome }

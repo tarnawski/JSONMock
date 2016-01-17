@@ -1,0 +1,18 @@
+JSONMockBundle\Entity\Application:
+  exclusion_policy: ALL
+  properties:
+    id:
+      expose: true
+      groups: [Details]
+    appKey:
+      expose: true
+      groups: [Details]
+    name:
+      expose: true
+      groups: [Details]
+    responses:
+      expose: true
+      groups: [Details]
+      type: ArrayCollection<JSONMockBundle\Entity\Response>
+      max_depth: 1
+
