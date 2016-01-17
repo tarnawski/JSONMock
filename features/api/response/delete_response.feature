@@ -9,9 +9,9 @@ Feature: Manage response
       | 1  | Application_1  | INHVFXSMDJWYKBOPQAZUCERLGT  |
       | 2  | Application_2  | YCMBXVDNELHOTJRQZGFPSWAKUI  |
     Given There are the following responses:
-      | ID | Name           | Url                  | Value                   | Method | Status_code | APP_ID |
-      | 1  | get category   | category             | [{'category': 'test'}]  | GET    | 200         | 1      |
-      | 2  | get product    | category/product/15  | [{'product': 'test'}]   | GET    | 200         | 1      |
+      | ID | Name           | Url                  | Value                 | Method | Status_code | APP_ID |
+      | 1  | get category   | category             | {"category": "test"}  | GET    | 200         | 1      |
+      | 2  | get product    | category/product/15  | {"product": "test"}   | GET    | 200         | 1      |
 
   @cleanDB
   Scenario: Delete response

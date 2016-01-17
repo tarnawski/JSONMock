@@ -9,9 +9,9 @@ Feature: Manage response
       | 1  | Application_1  | INHVFXSMDJWYKBOPQAZUCERLGT  |
       | 2  | Application_2  | YCMBXVDNELHOTJRQZGFPSWAKUI  |
     Given There are the following responses:
-      | ID | Name           | Url                  | Value                   | Method | Status_code | APP_ID |
-      | 1  | get category   | category             | [{'category': 'test'}]  | GET    | 200         | 1      |
-      | 2  | get product    | category/product/15  | [{'product': 'test'}]   | GET    | 200         | 1      |
+      | ID | Name           | Url                  | Value                 | Method | Status_code | APP_ID |
+      | 1  | get category   | category             | {"category": "test"}  | GET    | 200         | 1      |
+      | 2  | get product    | category/product/15  | {"product": "test"}   | GET    | 200         | 1      |
 
   @cleanDB
   Scenario: Get all response
@@ -21,19 +21,19 @@ Feature: Manage response
     [
       {
         "id": @integer@,
-        "name": "@string@",
-        "url": "@string@",
-        "value": "@string@",
-        "method": "@string@",
-        "status_code": @integer@
+        "name": "get category",
+        "url": "category",
+        "value": {"category": "test"},
+        "method": "GET",
+        "status_code": 200
       },
       {
         "id": @integer@,
-        "name": "@string@",
-        "url": "@string@",
-        "value": "@string@",
-        "method": "@string@",
-        "status_code": @integer@
+        "name": "get product",
+        "url": "category/product/15",
+        "value": {"product": "test"},
+        "method": "GET",
+        "status_code": 200
       }
     ]
     """
@@ -47,7 +47,7 @@ Feature: Manage response
         "id": @integer@,
         "name": "@string@",
         "url": "@string@",
-        "value": "@string@",
+        "value": {"category": "test"},
         "method": "@string@",
         "status_code": @integer@
       }

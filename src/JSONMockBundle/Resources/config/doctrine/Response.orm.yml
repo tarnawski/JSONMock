@@ -28,7 +28,7 @@ JSONMockBundle\Entity\Response:
                 fixed: false
         value:
             column: value
-            type: string
+            type: json_array
             nullable: false
             length: 1000
             options:
