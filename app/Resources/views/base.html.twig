@@ -1,13 +1,40 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Welcome!</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"/>
+    <script src="{{ asset('assets/js/jquery-2.2.0.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+</head>
+<body>
+<div class="container">
+    <br><br><br><br>
+
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-lg-6">
+                <h1>JSONMock</h1>
+                <p> The application is designed to mock JSON response.<br>
+                <b>Mock your JSON responses and test your REST API!</b></p>
+            </div>
+            <div class="col-lg-6">
+                <h2>Version: 1.0</h2>
+                Basic endpoint:
+                <input class="form-control" type="text" value="https://jsonmock.herokuapp.com/api/" readonly>
+                <br><br>
+
+                <div class="row">
+                    <div class="col-lg-6"><p><a href="/doc/api" class="btn btn-success btn-lg" role="button">Endpoint
+                                documentation</a></p></div>
+                    <div class="col-lg-6"><p><a href="https://github.com/tarnawski/JSONMock"
+                                                class="btn btn-primary btn-lg  pull-right" role="button">Github
+                                repository</a></p></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 </html>
