@@ -75,7 +75,7 @@ class ApiContext extends WebApiContext implements Context, SnippetAcceptingConte
             $response = new \JSONMockBundle\Entity\Response();
             $response->setName($row['Name']);
             $response->setUrl($row['Url']);
-            $response->setValue($row['Value']);
+            $response->setValue(json_decode($row['Value']));
             $response->setMethod($row['Method']);
             $response->setStatusCode($row['Status_code']);
             $application = $applicationRepository->find($row['APP_ID']);
