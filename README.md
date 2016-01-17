@@ -1,4 +1,4 @@
-JSONMock-beckend-php
+JSONMock-beckend
 ====================
 
 A Symfony project created on January 2016
@@ -19,7 +19,7 @@ Prepare:
 
 2. Source code
 Clone the repository:
-`git clone https://github.com/tarnawski/JSONMock.git`
+`https://github.com/tarnawski/JSONMock-backend.git`
 Get into project catalog:
 `cd JSONStorage-backend`
 3. Run Vagrant
@@ -31,6 +31,6 @@ When the process is complete, get into the machine:
 5. Load fixtures:
 `php app/console doctrine:fixtures:load`
 6. Add to your hosts:
-`10.0.0.200 jsonstorage.dev`
+`10.0.0.200 jsonmock.dev`
 
 That's all! Now you can start to use your app!!!
