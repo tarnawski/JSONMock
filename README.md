@@ -8,10 +8,13 @@ The application is designed to mock JSON response.
 Mock your JSON responses and test your REST API!
 
 <h2>Links:</h2>
-Last stable staging:
-Documentation url:
+
+<p>Url to frontend application repository based on this application:</p>
+`https://github.com/tarnawski/JSONMock-frontend`
+
+Rest API documentation endpoint: `/doc/api`
  
-<h2>Getting started</h2>
+<p><h2>Getting started</h2></p>
 Prepare: 
 - VirtualBox
 - Vagrant witch plugin:
