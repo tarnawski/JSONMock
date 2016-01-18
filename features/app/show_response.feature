@@ -9,9 +9,9 @@ Feature: Show response
       | 1  | Application_1  | INHVFXSMDJWYKBOPQAZUCERLGT  |
       | 2  | Application_2  | YCMBXVDNELHOTJRQZGFPSWAKUI  |
     Given There are the following responses:
-      | ID | Name           | Url                  | Value                   | Method | Status_code | APP_ID |
-      | 1  | get category   | category             | [{'category': 'test'}]  | GET    | 200         | 1      |
-      | 2  | get product    | category/product/15  | [{'product': 'test'}]   | GET    | 200         | 2      |
+      | ID | Name           | Url                  | Value                 | Method | Status_code | APP_ID |
+      | 1  | get category   | category             | {"category": "test"}  | GET    | 200         | 1      |
+      | 2  | get product    | category/product/15  | {"product": "test"}   | GET    | 200         | 2      |
 
   @cleanDB
   Scenario: Get response
@@ -19,12 +19,7 @@ Feature: Show response
     Then the JSON response should match:
     """
     {
-      "id": @integer@,
-      "name": "get category",
-      "url": "category",
-      "value": "[{'category': 'test'}]",
-      "method": "GET",
-      "status_code": 200
+      "category": "test"
     }
     """
 
