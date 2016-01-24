@@ -34,7 +34,11 @@ class ResponseUniqueValidator extends ConstraintValidator
         if (empty($response)) {
             return true;
         } else {
-            return false;
+            if($response[0]->getId() == $protocol->getId()){
+                return true;
+            }else{
+                return false;
+            }
         }
     }
 }
