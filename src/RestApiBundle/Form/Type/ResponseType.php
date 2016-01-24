@@ -12,42 +12,18 @@ class ResponseType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', 'text', array(
-            'constraints' => array(
-                new NotBlank()
-            ),
-        ));
-        $builder->add('url', 'text', array(
-            'constraints' => array(
-                new NotBlank()
-            ),
-        ));
-        $builder->add('value', 'text', array(
-            'constraints' => array(
-                new NotBlank()
-            ),
-        ));
-        $builder->add('name', 'text', array(
-            'constraints' => array(
-                new NotBlank()
-            ),
-        ));
+        $builder->add('name', 'text');
+        $builder->add('url', 'text');
+        $builder->add('value', 'text');
         $builder->add('method', ChoiceType::class, array(
             'choices' => array(
                 'GET' => 'GET',
                 'POST' => 'POST',
                 'PUT' => 'PUT',
                 'DELETE' => 'DELETE'
-            ),
-            'constraints' => array(
-                new NotBlank()
-            ),
+            )
         ));
-        $builder->add('statusCode', 'integer', array(
-            'constraints' => array(
-                new NotBlank()
-            ),
-        ));
+        $builder->add('statusCode', 'integer');
     }
 
     public function configureOptions(OptionsResolver $resolver)

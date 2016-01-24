@@ -23,3 +23,10 @@ services:
     class: JSONMockBundle\Model\ResponseFactory
     arguments:
       entityManager: "@app.response.repository"
+
+  validator.unique.response:
+    class: JSONMockBundle\Validator\Constraints\ResponseUniqueValidator
+    arguments:
+          entityManager: "@doctrine.orm.entity_manager"
+    tags:
+      - { name: validator.constraint_validator, alias: response_validate }
