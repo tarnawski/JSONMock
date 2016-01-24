@@ -38,6 +38,25 @@ Feature: Manage response
     """
 
   @cleanDB
+  Scenario: Edit response with not unique parameters
+    When I send a PUT request to "/api/response/INHVFXSMDJWYKBOPQAZUCERLGT/1" with body:
+    """
+    {
+       "name": "nowa",
+       "url": "category/product/15",
+       "value": {"category": "test"},
+       "method": "GET",
+       "statusCode": "500"
+    }
+    """
+    Then the JSON response should match:
+    """
+      [
+        "Response exist"
+      ]
+    """
+
+  @cleanDB
   Scenario: Edit response with invalid APP_KEY
     When I send a PUT request to "/api/response/WRONGAPPKEY/1" with body:
     """

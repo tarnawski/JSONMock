@@ -1,0 +1,15 @@
+JSONMockBundle\Entity\Response:
+    properties:
+        name:
+            - NotBlank: ~
+        url:
+            - NotBlank: ~
+        value:
+            - NotBlank: ~
+        method:
+            - NotBlank: ~
+        statusCode:
+            - NotBlank: ~
+    constraints:
+        - JSONMockBundle\Validator\Constraints\ResponseUnique: ~
+
