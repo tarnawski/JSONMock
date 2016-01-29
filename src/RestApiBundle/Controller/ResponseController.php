@@ -125,7 +125,7 @@ class ResponseController extends ApiController
         $form->submit($formData);
 
         if (!$form->isValid()) {
-            return JsonResponse::create(array('status' => 'Error', 'message' => $this->getErrorMessages($form)), 400);
+            return JsonResponse::create(array('status' => 'Error', 'message' => array_values($this->getErrorMessages($form))[0]), 400);
         }
         $response = $form->getData();
 
@@ -179,7 +179,7 @@ class ResponseController extends ApiController
         $form->submit($formData);
 
         if (!$form->isValid()) {
-            return JsonResponse::create(array('status' => 'Error', 'message' => $this->getErrorMessages($form)), 400);
+            return JsonResponse::create(array('status' => 'Error', 'message' => array_values($this->getErrorMessages($form))[0]), 400);
         }
 
         $em = $this->getDoctrine()->getManager();
