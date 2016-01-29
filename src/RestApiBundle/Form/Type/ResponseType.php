@@ -1,6 +1,7 @@
 <?php
 namespace RestApiBundle\Form\Type;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,11 +25,15 @@ class ResponseType extends AbstractType
             )
         ));
         $builder->add('statusCode', 'integer');
+        $builder->add('application', EntityType::class, array(
+            'class' => 'JSONMockBundle:Application'
+    ));
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefault('csrf_protection', false);
+        $resolver->setDefault('data_class', 'JSONMockBundle\Entity\Response');
     }
 
     /**

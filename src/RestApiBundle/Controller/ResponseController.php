@@ -41,7 +41,7 @@ class ResponseController extends ApiController
     public function allResponseAction(Application $application = null)
     {
         if ($application == null) {
-            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'));
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'), 404);
         }
         $responses = $application->getResponses();
 
@@ -76,14 +76,14 @@ class ResponseController extends ApiController
     public function getResponseAction(Application $application = null, \JSONMockBundle\Entity\Response $response = null)
     {
         if ($application == null) {
-            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'));
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'), 404);
         }
         if ($response == null) {
-            return JsonResponse::create(array('status' => 'Error', 'message' => 'Response not found'));
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'Response not found'), 404);
         }
         $responses = $application->getResponses();
         if (!$responses->contains($response)) {
-            return JsonResponse::create(array('status' => 'Error', 'message' => 'Response not found'));
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'Response not found'), 404);
         }
 
         return $this->success($response, 'response', Response::HTTP_OK, array('Default', 'Details'));
@@ -117,31 +117,23 @@ class ResponseController extends ApiController
     public function createResponseAction(Request $request, Application $application = null)
     {
         if ($application == null) {
-            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'));
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'), 404);
         }
         $form = $this->get('form.factory')->create(new ResponseType());
         $formData = json_decode($request->getContent(), true);
+        $formData['application'] = $application->getId();
         $form->submit($formData);
 
         if (!$form->isValid()) {
-            return $this->error($this->getErrorMessages($form));
+            return JsonResponse::create(array('status' => 'Error', 'message' => $this->getErrorMessages($form)), 400);
         }
-        $data = $form->getData();
-
-        $response = $this->get('app.response.factory')->create($data);
-
-        if ($response == null) {
-            return JsonResponse::create(array('status' => 'Error', 'message' => 'This method exist'));
-        }
-
-        $response->setApplication($application);
+        $response = $form->getData();
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($response);
         $em->flush();
 
-        return $this->success($response, 'response', Response::HTTP_OK, array('Default', 'Details'));
-
+        return $this->success($response, 'response', Response::HTTP_CREATED, array('Default', 'Details'));
     }
 
     /**
@@ -176,18 +168,18 @@ class ResponseController extends ApiController
         Application $application = null
     ) {
         if ($application == null) {
-            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'));
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'), 404);
         }
-        if ($response == null) {
-            return JsonResponse::create(array('status' => 'Error', 'message' => 'Response not found'));
+        if ($response == null || !$application->getResponses()->contains($response)) {
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'Response not found'), 404);
         }
         $form = $this->get('form.factory')->create(new ResponseType(), $response);
         $formData = json_decode($request->getContent(), true);
-
+        $formData['application'] = $application->getId();
         $form->submit($formData);
 
         if (!$form->isValid()) {
-            return $this->error($this->getErrorMessages($form));
+            return JsonResponse::create(array('status' => 'Error', 'message' => $this->getErrorMessages($form)), 400);
         }
 
         $em = $this->getDoctrine()->getManager();
@@ -217,16 +209,16 @@ class ResponseController extends ApiController
     public function deleteResponseAction(\JSONMockBundle\Entity\Response $response = null, Application $application = null)
     {
         if ($application == null) {
-            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'));
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'), 404);
         }
         if ($response == null) {
-            return JsonResponse::create(array('status' => 'Error', 'message' => 'Response not found'));
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'Response not found'), 404);
         }
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($response);
         $em->flush();
 
-        return JsonResponse::create(array('status' => 'Removed', 'message' => 'Response properly removed'));
+        return JsonResponse::create(array('status' => 'Success', 'message' => 'Response properly removed'), 200);
     }
 }

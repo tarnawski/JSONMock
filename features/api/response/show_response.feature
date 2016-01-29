@@ -16,6 +16,7 @@ Feature: Manage response
   @cleanDB
   Scenario: Get all response
     When I send a GET request to "/api/response/INHVFXSMDJWYKBOPQAZUCERLGT"
+    Then the response code should be 200
     Then the JSON response should match:
     """
     [
@@ -41,6 +42,7 @@ Feature: Manage response
   @cleanDB
   Scenario: Get response
     When I send a GET request to "/api/response/INHVFXSMDJWYKBOPQAZUCERLGT/1"
+    Then the response code should be 200
     Then the JSON response should match:
     """
       {

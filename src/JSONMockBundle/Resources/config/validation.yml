@@ -11,5 +11,6 @@ JSONMockBundle\Entity\Response:
         statusCode:
             - NotBlank: ~
     constraints:
-        - JSONMockBundle\Validator\Constraints\ResponseUnique: ~
+        - JSONMockBundle\Validator\Constraints\ResponseUnique:
+
 

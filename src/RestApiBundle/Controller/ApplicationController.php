@@ -41,7 +41,7 @@ class ApplicationController extends ApiController
     public function getApplicationAction(Application $application = null)
     {
         if ($application == null) {
-            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'));
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'), 404);
         }
 
         return $this->success($application, 'application', Response::HTTP_OK, array('Default','Details'));
@@ -72,7 +72,7 @@ class ApplicationController extends ApiController
         $em->persist($application);
         $em->flush();
 
-        return $this->success($application, 'application', Response::HTTP_OK, array('Default','Details'));
+        return $this->success($application, 'application', Response::HTTP_CREATED, array('Default','Details'));
     }
 
     /**
@@ -97,7 +97,7 @@ class ApplicationController extends ApiController
     public function editApplicationAction(Request $request, Application $application = null)
     {
         if ($application == null) {
-            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'));
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'), 404);
         }
 
         $form = $this->get('form.factory')->create(new ApplicationEditType(), $application);
@@ -106,7 +106,7 @@ class ApplicationController extends ApiController
         $form->submit($formData);
 
         if (!$form->isValid()) {
-            return $this->error($this->getErrorMessages($form));
+            return JsonResponse::create(array('status' => 'Error', 'message' => $this->getErrorMessages($form)), 400);
         }
 
         $em = $this->getDoctrine()->getManager();
@@ -134,13 +134,13 @@ class ApplicationController extends ApiController
     public function deleteApplicationAction(Application $application = null)
     {
         if ($application == null) {
-            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'));
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'), 404);
         }
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($application);
         $em->flush();
 
-        return JsonResponse::create(array('status' => 'Removed', 'message' => 'Application properly removed'));
+        return JsonResponse::create(array('status' => 'Success', 'message' => 'Application properly removed'), 200);
     }
 }

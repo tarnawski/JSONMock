@@ -16,10 +16,11 @@ Feature: Manage response
   @cleanDB
   Scenario: Delete response
     When I send a DELETE request to "/api/response/INHVFXSMDJWYKBOPQAZUCERLGT/1"
+    Then the response code should be 200
     Then the JSON response should match:
     """
     {
-      "status": "Removed",
+      "status": "Success",
       "message": "Response properly removed"
     }
     """
@@ -27,6 +28,7 @@ Feature: Manage response
   @cleanDB
   Scenario: Delete response with invalid APP_KEY
     When I send a DELETE request to "/api/response/WRONGAPPKEY/1"
+    Then the response code should be 404
     Then the JSON response should match:
     """
     {
@@ -38,6 +40,7 @@ Feature: Manage response
   @cleanDB
   Scenario: Delete response with invalid ID
     When I send a DELETE request to "/api/response/INHVFXSMDJWYKBOPQAZUCERLGT/8"
+    Then the response code should be 404
     Then the JSON response should match:
     """
     {
