@@ -27,7 +27,7 @@ class ResponseType extends AbstractType
         $builder->add('statusCode', 'integer');
         $builder->add('application', EntityType::class, array(
             'class' => 'JSONMockBundle:Application'
-    ));
+        ));
     }
 
     public function configureOptions(OptionsResolver $resolver)
