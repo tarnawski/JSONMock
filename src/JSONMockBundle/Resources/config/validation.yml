@@ -13,3 +13,4 @@ JSONMockBundle\Entity\Response:
     constraints:
         - JSONMockBundle\Validator\Constraints\ResponseUnique: ~
 
+

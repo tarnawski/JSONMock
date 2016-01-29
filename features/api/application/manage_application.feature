@@ -27,7 +27,7 @@ Feature: Manage applications
   @cleanDB
   Scenario: Get application details with wrong APP_KEY
     When I send a GET request to "/api/application/WRONGAPPKEY"
-    Then the response code should be 200
+    Then the response code should be 404
     And the JSON response should match:
     """
     {
@@ -44,7 +44,7 @@ Feature: Manage applications
       "name":"name"
     }
     """
-    Then the response code should be 200
+    Then the response code should be 201
     And the JSON response should match:
     """
     {
@@ -82,7 +82,7 @@ Feature: Manage applications
       "name":"name"
     }
     """
-    Then the response code should be 200
+    Then the response code should be 404
     And the JSON response should match:
     """
     {
@@ -98,7 +98,7 @@ Feature: Manage applications
     And the JSON response should match:
     """
     {
-      "status": "Removed",
+      "status": "Success",
       "message": "@string@"
     }
     """
@@ -106,7 +106,7 @@ Feature: Manage applications
   @cleanDB
   Scenario: Delete application witch wrong APP_KEY
     When I send a DELETE request to "/api/application/WRONGAPPKEY"
-    Then the response code should be 200
+    Then the response code should be 404
     And the JSON response should match:
     """
     {
@@ -114,3 +114,4 @@ Feature: Manage applications
       "message": "@string@"
     }
     """
+

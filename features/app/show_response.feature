@@ -16,6 +16,7 @@ Feature: Show response
   @cleanDB
   Scenario: Get response
     When I send a GET request to "/app/INHVFXSMDJWYKBOPQAZUCERLGT/category"
+    Then the response code should be 200
     Then the JSON response should match:
     """
     {
@@ -26,6 +27,7 @@ Feature: Show response
   @cleanDB
   Scenario: Get response with invalid APP_KEY
     When I send a GET request to "/app/WRONGAPPKEY/category"
+    Then the response code should be 404
     Then the JSON response should match:
     """
     {
@@ -35,8 +37,9 @@ Feature: Show response
     """
 
   @cleanDB
-  Scenario: Get response
+  Scenario: Get response with wrong path
     When I send a GET request to "/app/INHVFXSMDJWYKBOPQAZUCERLGT/wrong"
+    Then the response code should be 404
     Then the JSON response should match:
     """
     {

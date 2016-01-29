@@ -25,6 +25,7 @@ Feature: Manage response
        "statusCode": "500"
     }
     """
+    Then the response code should be 200
     Then the JSON response should match:
     """
       {
@@ -49,11 +50,15 @@ Feature: Manage response
        "statusCode": "500"
     }
     """
+    Then the response code should be 400
     Then the JSON response should match:
     """
-      [
+    {
+      "status": "Error",
+      "message": [
         "Response exist"
       ]
+    }
     """
 
   @cleanDB
@@ -68,6 +73,7 @@ Feature: Manage response
        "statusCode": "500"
     }
     """
+    Then the response code should be 404
     Then the JSON response should match:
     """
     {
@@ -88,6 +94,7 @@ Feature: Manage response
        "statusCode": "500"
     }
     """
+    Then the response code should be 404
     Then the JSON response should match:
     """
     {

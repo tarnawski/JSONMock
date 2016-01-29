@@ -27,13 +27,18 @@ class ResponseUniqueValidator extends ConstraintValidator
     public function isUnique(Constraint $constraint, $protocol)
     {
         $responseRepository = $this->entityManager->getRepository(Response::class);
-        $response = $responseRepository->findBy(array(
+        $response = $responseRepository->findOneBy(array(
+            'application' => $protocol->getApplication()->getId(),
             'url' => $protocol->getUrl(),
             'method' => $protocol->getMethod()
         ));
+
         if (empty($response)) {
             return true;
         } else {
+            if ($protocol->getId() != null && $protocol->getId() == $response->getId()) {
+                return true;
+            }
             return false;
         }
     }

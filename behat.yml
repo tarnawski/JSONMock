@@ -21,7 +21,14 @@ default: &default
           container: "@service_container"
       filters:
         tags: "~@wip"
-
+    app:
+      paths:
+        - %paths.base%/features/app
+      contexts:
+        - RestApiBundle\Behat\ApiContext:
+          container: "@service_container"
+      filters:
+        tags: "~@wip"
 ci:
   <<: *default
   extensions:
