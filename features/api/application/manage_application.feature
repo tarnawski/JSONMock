@@ -38,7 +38,7 @@ Feature: Manage applications
 
   @cleanDB
   Scenario: Create application
-    When I send a POST request to "/api/application/" with body:
+    When I send a POST request to "/api/application" with body:
     """
     {
       "name":"name"

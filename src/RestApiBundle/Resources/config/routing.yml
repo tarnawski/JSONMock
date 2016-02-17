@@ -1,9 +1,9 @@
 api_application:
-  prefix: /api/application/
+  prefix: /api/
   resource: "@RestApiBundle/Resources/config/api/application.yml"
 
 api_response:
-  prefix: /api/response/
+  prefix: /api/
   resource: "@RestApiBundle/Resources/config/api/response.yml"
 
 response _get:

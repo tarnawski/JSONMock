@@ -55,9 +55,7 @@ Feature: Manage response
     """
     {
       "status": "Error",
-      "message": [
-        "Response exist"
-      ]
+      "message": "Response exist" 
     }
     """
 
