@@ -14,6 +14,8 @@
     "require": {
         "php": ">=5.3.9",
         "symfony/symfony": "2.8.*",
+        "ext-pdo": "*",
+        "ext-pdo_pgsql": "*",
         "doctrine/orm": "^2.4.8",
         "doctrine/doctrine-bundle": "~1.4",
         "symfony/swiftmailer-bundle": "~2.3",
@@ -64,6 +66,11 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+        ],
+        "compile": [
+          "php app/console doctrine:schema:update --force --env=prod",
+          "php app/console doctrine:fixture:load --env=prod --no-debug",
+          "rm -rf app/cache/prod/*"
         ]
     },
     "config": {
@@ -74,7 +81,14 @@
         "symfony-web-dir": "web",
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
+            "file": "app/config/parameters.yml",
+            "env-map": {
+              "database_name": "SYMFONY__DATABASE_NAME",
+              "database_user": "SYMFONY__DATABASE_USER",
+              "database_host": "SYMFONY__DATABASE_HOST",
+              "database_port": "SYMFONY__DATABASE_PORT",
+              "database_password": "SYMFONY__DATABASE_PASSWORD"
+            }
         }
     }
 }
