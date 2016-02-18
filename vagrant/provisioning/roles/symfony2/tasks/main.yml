@@ -11,11 +11,5 @@
     state: link
   notify: restart apache
 
-- name: Create prod database
-  mysql_db:
-    name: "{{ item }}"
-    state: present
-    collation: utf8_general_ci
-  with_items: project_databases
 
 

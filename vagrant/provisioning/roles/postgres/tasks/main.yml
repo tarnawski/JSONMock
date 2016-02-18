@@ -1,0 +1,20 @@
+---
+- name: Add repository with postgres 9.4.
+  apt_repository: repo="deb http://apt.postgresql.org/pub/repos/apt/ wheezy-pgdg main"
+
+- name: Add repository key
+  apt_key: url="https://www.postgresql.org/media/keys/ACCC4CF8.asc" state=present
+
+- name: Update repo.
+  apt: update_cache=yes
+
+- name: Install postgres
+  apt: name="postgresql-9.4" state=latest
+
+- name: Install psycopg2 module
+  apt: name="python-psycopg2" state=latest
+
+- name: Update pg_hba.conf file
+  template: src=pg_hba.conf.j2 dest=/etc/postgresql/{{ pg_version }}/{{ pg_cluster }}/pg_hba.conf owner={{ pg_admin_user }} group={{ pg_admin_user }} mode=0640
+  notify: restart postgresql
+  sudo: true
