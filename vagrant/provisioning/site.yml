@@ -11,7 +11,7 @@
     - tools
     - apache
     - php5
-    - mysql
+    - postgres
     - composer
     - symfony2
     - xdebug
