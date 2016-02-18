@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="JSONMock" default="build">
+    <property name="workspace" value="${basedir}" />
+    <property name="sourcedir" value="${basedir}/src" />
+    <property name="builddir" value="${workspace}/app/build" />
+
+    <target name="build"
+            depends="vendors,parameters,phpcs"/>
+
+    <target name="build-parallel" depends="prepare,tools-parallel"/>
+
+    <target name="tools-parallel" description="Run tools in parallel">
+        <parallel threadCount="2">
+            <antcall target="phpcs"/>
+        </parallel>
+    </target>
+
+    <target name="phpcs" description="Find coding standard violations using PHP_CodeSniffer">
+        <exec executable="phpcs">
+            <arg value="--standard=PSR2" />
+            <arg path="${sourcedir}" />
+        </exec>
+    </target>
+
+    <target name="vendors" description="Update vendors">
+        <exec executable="php" failonerror="true">
+            <arg value="composer.phar" />
+            <arg value="update" />
+        </exec>
+    </target>
+
+    <target name="parameters" description="Copy parameters">
+        <exec executable="cp" failonerror="true">
+            <arg path="app/config/parameters.yml.dist" />
+            <arg path="app/config/parameters.yml" />
+        </exec>
+    </target>
+
+</project>
