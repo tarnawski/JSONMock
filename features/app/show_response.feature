@@ -9,9 +9,11 @@ Feature: Show response
       | 1  | Application_1  | INHVFXSMDJWYKBOPQAZUCERLGT  |
       | 2  | Application_2  | YCMBXVDNELHOTJRQZGFPSWAKUI  |
     Given There are the following responses:
-      | ID | Name           | Url                  | Value                 | Method | Status_code | APP_ID |
-      | 1  | get category   | category             | {"category": "test"}  | GET    | 200         | 1      |
-      | 2  | get product    | category/product/15  | {"product": "test"}   | GET    | 200         | 2      |
+      | ID | Name           | Url                  | Value                       | Method | Status_code | APP_ID |
+      | 1  | get category   | category             | {"category": "test"}        | GET    | 200         | 1      |
+      | 2  | get product    | category/product/15  | {"product": "test"}         | GET    | 200         | 2      |
+      | 3  | test           | test                 | {"product": "@sentence@"} | GET    | 200         | 1      |
+
 
   @cleanDB
   Scenario: Get response
@@ -21,6 +23,17 @@ Feature: Show response
     """
     {
       "category": "test"
+    }
+    """
+
+  @cleanDB
+  Scenario: Get response after transform
+    When I send a GET request to "/app/INHVFXSMDJWYKBOPQAZUCERLGT/test"
+    Then the response code should be 200
+    Then the JSON response should match:
+    """
+    {
+      "product": "@string@"
     }
     """
 

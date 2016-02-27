@@ -59,7 +59,11 @@ class AppResponseController extends ApiController
         $response = $responseRepository->getResponseByRouteAndMethod($route, $method, $application);
 
         if ($response != null) {
-            return JsonResponse::create($response->getValue(), $response->getStatusCode());
+
+            $transformer = $this->get('response.tarnsformer');
+            $transformedResponse = $transformer->transform($response->getValue());
+
+            return JsonResponse::create($transformedResponse, $response->getStatusCode());
         } else {
             return JsonResponse::create(array('status' => 'Error', 'message' => 'Request not found'), 404);
         }

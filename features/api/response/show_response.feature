@@ -22,17 +22,17 @@ Feature: Manage response
     [
       {
         "id": @integer@,
-        "name": "get category",
-        "url": "category",
-        "value": {"category": "test"},
+        "name": "get product",
+        "url": "category/product/15",
+        "value": {"product": "test"},
         "method": "GET",
         "status_code": 200
       },
       {
         "id": @integer@,
-        "name": "get product",
-        "url": "category/product/15",
-        "value": {"product": "test"},
+        "name": "get category",
+        "url": "category",
+        "value": {"category": "test"},
         "method": "GET",
         "status_code": 200
       }

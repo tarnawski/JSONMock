@@ -30,3 +30,6 @@ services:
           entityManager: "@doctrine.orm.entity_manager"
     tags:
       - { name: validator.constraint_validator, alias: response_validate }
+
+  response.tarnsformer:
+    class: JSONMockBundle\DataTransformer\ResponseTransformer
