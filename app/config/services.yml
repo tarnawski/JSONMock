@@ -22,6 +22,11 @@ services:
   app.response.factory:
     class: JSONMockBundle\Model\ResponseFactory
     arguments:
+      entityManager: "@app.application.repository"
+
+  app.response.factory:
+    class: JSONMockBundle\Model\ResponseFactory
+    arguments:
       entityManager: "@app.response.repository"
 
   validator.unique.response:

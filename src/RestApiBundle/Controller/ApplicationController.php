@@ -67,9 +67,10 @@ class ApplicationController extends ApiController
         }
         $data = $form->getData();
         $application = $this->get('app.application.factory')->create($data['name']);
-
+        $response = $this->get('app.response.factory')->createFirst($application);
         $em = $this->getDoctrine()->getManager();
         $em->persist($application);
+        $em->persist($response);
         $em->flush();
 
         return $this->success($application, 'application', Response::HTTP_CREATED, array('Default','Details'));
