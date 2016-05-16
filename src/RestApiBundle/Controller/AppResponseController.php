@@ -59,7 +59,6 @@ class AppResponseController extends ApiController
         $response = $responseRepository->getResponseByRouteAndMethod($route, $method, $application);
 
         if ($response != null) {
-
             $transformer = $this->get('response.tarnsformer');
             $transformedResponse = $transformer->transform($response->getValue());
 
