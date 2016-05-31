@@ -18,6 +18,17 @@ class LoadResponseData extends AbstractFixture implements FixtureInterface, Orde
      */
     public function load(ObjectManager $manager)
     {
+        // Add application for e2e test in frontend
+        $response = new Response();
+        $response->setName("Test");
+        $response->setUrl("test");
+        $response->setValue(array("Dummy" => "Data"));
+        $response->setMethod("GET");
+        $response->setStatusCode(200);
+        $application = $this->getReference(sprintf('test_application'));
+        $response->setApplication($application);
+        $manager->persist($response);
+
         $faker = Factory::create('pl_PL');
         $arrayOfMethod = ['POST', 'GET', 'DELETE', 'PUT'];
         $arrayOfStatusCode = [200, 201, 403, 500];

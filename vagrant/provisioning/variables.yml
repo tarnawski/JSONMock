@@ -10,6 +10,4 @@ project_databases:
 # Composer
 composer_download_url: https://getcomposer.org/composer.phar
 
-#MySQL
-mysql_port: 3306
-mysql_root_db_pass: ""
+

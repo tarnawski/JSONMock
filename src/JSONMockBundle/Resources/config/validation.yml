@@ -4,12 +4,11 @@ JSONMockBundle\Entity\Response:
             - NotBlank: ~
         url:
             - NotBlank: ~
-        value:
-            - NotBlank: ~
         method:
             - NotBlank: ~
         statusCode:
             - NotBlank: ~
     constraints:
         - JSONMockBundle\Validator\Constraints\ResponseUnique: ~
+
 

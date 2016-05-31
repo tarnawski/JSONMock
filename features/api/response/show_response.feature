@@ -16,22 +16,23 @@ Feature: Manage response
   @cleanDB
   Scenario: Get all response
     When I send a GET request to "/api/response/INHVFXSMDJWYKBOPQAZUCERLGT"
+    Then the response code should be 200
     Then the JSON response should match:
     """
     [
       {
         "id": @integer@,
-        "name": "get category",
-        "url": "category",
-        "value": {"category": "test"},
+        "name": "get product",
+        "url": "category/product/15",
+        "value": {"product": "test"},
         "method": "GET",
         "status_code": 200
       },
       {
         "id": @integer@,
-        "name": "get product",
-        "url": "category/product/15",
-        "value": {"product": "test"},
+        "name": "get category",
+        "url": "category",
+        "value": {"category": "test"},
         "method": "GET",
         "status_code": 200
       }
@@ -41,6 +42,7 @@ Feature: Manage response
   @cleanDB
   Scenario: Get response
     When I send a GET request to "/api/response/INHVFXSMDJWYKBOPQAZUCERLGT/1"
+    Then the response code should be 200
     Then the JSON response should match:
     """
       {

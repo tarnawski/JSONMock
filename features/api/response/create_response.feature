@@ -25,6 +25,7 @@ Feature: Manage response
        "statusCode": "500"
     }
     """
+    Then the response code should be 201
     Then the JSON response should match:
     """
       {
@@ -49,11 +50,12 @@ Feature: Manage response
        "statusCode": "500"
     }
     """
+    Then the response code should be 400
     Then the JSON response should match:
     """
     {
       "status": "Error",
-      "message": "This method exist"
+      "message": "Response exist"
     }
     """
 
@@ -69,6 +71,7 @@ Feature: Manage response
        "statusCode": "500"
     }
     """
+    Then the response code should be 404
     Then the JSON response should match:
     """
     {

@@ -18,6 +18,13 @@ class LoadApplicationData extends AbstractFixture implements FixtureInterface, O
      */
     public function load(ObjectManager $manager)
     {
+        // Add application for e2e test in frontend
+        $application = new Application();
+        $application->setAppKey("1Z70LMBXQNH6F9U5T4P3O8WVSEGAIDY2JKCR");
+        $application->setName("Test");
+        $this->addReference(sprintf('test_application'), $application);
+        $manager->persist($application);
+
         $faker = Factory::create('pl_PL');
         for ($i = 0; $i < self::APPLICATIONS_NUMBER; $i++) {
             $application = new Application();

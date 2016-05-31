@@ -3,52 +3,33 @@
 namespace JSONMockBundle\Model;
 
 use Doctrine\ORM\EntityRepository;
+use JSONMockBundle\Entity\Application;
 use JSONMockBundle\Entity\Response;
-use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class ResponseFactory
 {
     /**
      * @var EntityRepository
      */
-    private $responseRepository;
+    private $userRepository;
 
     public function __construct(EntityRepository $entityRepository)
     {
-        $this->responseRepository = $entityRepository;
+        $this->userRepository = $entityRepository;
     }
 
-    public function create($data)
+    public function createFirst(Application $application)
     {
-        $accessor = PropertyAccess::createPropertyAccessor();
+        $value = array("Message" => "Hello world!!!");
 
-        if (!$this->uniqueResponse(
-            $accessor->getValue($data, '[url]'),
-            $accessor->getValue($data, '[method]')
-        )) {
-            return null;
-        }
-            $response = new Response();
-            $response->setName($accessor->getValue($data, '[name]'));
-            $response->setUrl($accessor->getValue($data, '[url]'));
-            $response->setValue($accessor->getValue($data, '[value]'));
-            $response->setMethod($accessor->getValue($data, '[method]'));
-            $response->setStatusCode($accessor->getValue($data, '[statusCode]'));
+        $response = new Response();
+        $response->setName("Hello world");
+        $response->setUrl("welcome");
+        $response->setMethod("GET");
+        $response->setStatusCode(200);
+        $response->setValue($value);
+        $response->setApplication($application);
 
         return $response;
-    }
-
-    private function uniqueResponse($url, $method)
-    {
-        $response = $this->responseRepository->findBy(array(
-            'url' => $url,
-            'method' => $method
-        ));
-
-        if (!$response) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }

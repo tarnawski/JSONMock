@@ -50,18 +50,21 @@ class AppResponseController extends ApiController
         Application $application = null
     ) {
         if ($application == null) {
-            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'));
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'), 404);
         }
 
         $method = $this->get('request')->getMethod();
 
         $responseRepository = $this->getRepository($this->getEntityClassName());
-        $response = $responseRepository->getResponseByRouteAndMethod($route, $method);
+        $response = $responseRepository->getResponseByRouteAndMethod($route, $method, $application);
 
         if ($response != null) {
-            return JsonResponse::create($response->getValue(), $response->getStatusCode());
+            $transformer = $this->get('response.tarnsformer');
+            $transformedResponse = $transformer->transform($response->getValue());
+
+            return JsonResponse::create($transformedResponse, $response->getStatusCode());
         } else {
-            return JsonResponse::create(array('status' => 'Error', 'message' => 'Request not found'));
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'Request not found'), 404);
         }
     }
 }

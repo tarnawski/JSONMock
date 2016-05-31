@@ -21,6 +21,7 @@
     - php5-curl
     - php5-intl
     - php5-mcrypt
+    - php5-pgsql
 
 - name: Configure PHP
   template: src=php_config.ini.j2 dest=/etc/php5/apache2/conf.d/php_config.ini force=yes

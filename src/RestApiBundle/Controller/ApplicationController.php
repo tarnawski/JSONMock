@@ -41,7 +41,7 @@ class ApplicationController extends ApiController
     public function getApplicationAction(Application $application = null)
     {
         if ($application == null) {
-            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'));
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'), 404);
         }
 
         return $this->success($application, 'application', Response::HTTP_OK, array('Default','Details'));
@@ -63,16 +63,17 @@ class ApplicationController extends ApiController
         $form->submit($formData);
 
         if (!$form->isValid()) {
-            return $this->error($this->getErrorMessages($form));
+            return JsonResponse::create(array('status' => 'Error', 'message' => array_values($this->getErrorMessages($form))[0]), 400);
         }
         $data = $form->getData();
         $application = $this->get('app.application.factory')->create($data['name']);
-
+        $response = $this->get('app.response.factory')->createFirst($application);
         $em = $this->getDoctrine()->getManager();
         $em->persist($application);
+        $em->persist($response);
         $em->flush();
 
-        return $this->success($application, 'application', Response::HTTP_OK, array('Default','Details'));
+        return $this->success($application, 'application', Response::HTTP_CREATED, array('Default','Details'));
     }
 
     /**
@@ -97,7 +98,7 @@ class ApplicationController extends ApiController
     public function editApplicationAction(Request $request, Application $application = null)
     {
         if ($application == null) {
-            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'));
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'), 404);
         }
 
         $form = $this->get('form.factory')->create(new ApplicationEditType(), $application);
@@ -106,7 +107,7 @@ class ApplicationController extends ApiController
         $form->submit($formData);
 
         if (!$form->isValid()) {
-            return $this->error($this->getErrorMessages($form));
+            return JsonResponse::create(array('status' => 'Error', 'message' => array_values($this->getErrorMessages($form))[0]), 400);
         }
 
         $em = $this->getDoctrine()->getManager();
@@ -134,13 +135,13 @@ class ApplicationController extends ApiController
     public function deleteApplicationAction(Application $application = null)
     {
         if ($application == null) {
-            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'));
+            return JsonResponse::create(array('status' => 'Error', 'message' => 'APP_KEY not match'), 404);
         }
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($application);
         $em->flush();
 
-        return JsonResponse::create(array('status' => 'Removed', 'message' => 'Application properly removed'));
+        return JsonResponse::create(array('status' => 'Success', 'message' => 'Application properly removed'), 200);
     }
 }
